@@ -9,7 +9,6 @@ public class QuickSort {
 
 
     public static void main(String[] args) {
-
         long start = System.currentTimeMillis();
         int[] array = {9, 7, 6, 5, 4, 3, 1, 8, 10, 2, 0, 4, 6, 2, 1, 5, 55, 99, 100};
         quickSort(array, 6, array.length - 1);
@@ -44,7 +43,6 @@ public class QuickSort {
                 j--;
             }
         }
-
         //i == j
         a[i] = key;
         quickSort(a, left, i - 1);//递归调用

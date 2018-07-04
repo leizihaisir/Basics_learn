@@ -16,6 +16,7 @@ public class InsertionSort {
     }
 
     private static void getInsertionSort(int[] array) {
+        int count = 0;
         int length = array.length;
         int preIndex, current;
         for (int i = 1; i < length; i++) {
@@ -24,8 +25,10 @@ public class InsertionSort {
             while (preIndex >= 0 && array[preIndex] > current) {
                 array[preIndex + 1] = array[preIndex];
                 preIndex--;
+                count++;
             }
             array[preIndex + 1] = current;
         }
+        System.out.println("count:" + count);
     }
 }

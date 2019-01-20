@@ -13,7 +13,7 @@ public class QuickSort {
     public static void main(String[] args) {
         long start = System.currentTimeMillis();
         int[] array = {9, 7, 6, 5, 4, 3, 1, 8, 10, 2, 0, 4, 6, 2, 1, 5, 55, 99, 100, 20};
-        quickSort2(array, 0, array.length - 1);
+        quickSort(array, 0, array.length - 1);
         for (int i : array) {
             System.out.println(i);
         }
@@ -59,8 +59,7 @@ public class QuickSort {
                 int tmp = a[++i];
                 a[i] = a[j];
                 a[j++] = tmp;
-            }
-            else
+            } else
                 ++j;
         }
         quickSort2(a, s, i - 1);

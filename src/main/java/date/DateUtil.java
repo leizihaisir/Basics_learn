@@ -2,8 +2,10 @@ package date;
 
 import org.apache.commons.lang3.StringUtils;
 
+import java.math.BigDecimal;
 import java.sql.Timestamp;
 import java.text.DateFormat;
+import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -352,6 +354,9 @@ public class DateUtil {
     }
 
     public static void main(String[] args) {
-        System.out.println(DateUtil.str2Date("20180120", "yyyyMMdd"));
+        BigDecimal a = new BigDecimal("0.01");
+        DecimalFormat df = new DecimalFormat("##0.00"); //保留一位小数
+        df.format(a);
+        System.out.println(df.format(a));
     }
 }

@@ -27,6 +27,7 @@ public class TestServerSocketChannel {
 
             serverSocketChannel.socket().bind(new InetSocketAddress(8088));
             serverSocketChannel.configureBlocking(false);
+            serverSocketChannel.register(selector, SelectionKey.OP_ACCEPT);
             while (true) {
                 // 通过调用 select 方法, 阻塞地等待 channel I/O 可操作
                 if (selector.select(3000) == 0) {
@@ -54,11 +55,12 @@ public class TestServerSocketChannel {
                         clientChannel.configureBlocking(false);
                         //在 OP_ACCEPT 到来时, 再将这个 Channel 的 OP_READ 注册到 Selector 中.
                         // 注意, 这里我们如果没有设置 OP_READ 的话, 即 interest set 仍然是 OP_CONNECT 的话, 那么 select 方法会一直直接返回.
-                        clientChannel.register(key.selector(), OP_READ, ByteBuffer.allocate(256));
+                        ByteBuffer allocate = ByteBuffer.allocate(256);
+                        allocate.put(Byte.parseByte("123"));
+                        clientChannel.register(key.selector(), OP_READ, allocate);
                     }
 
                     if (key.isReadable()) {
-
                         SocketChannel clientChannel = (SocketChannel) key.channel();
                         ByteBuffer buf = (ByteBuffer) key.attachment();
                         long bytesRead = clientChannel.read(buf);

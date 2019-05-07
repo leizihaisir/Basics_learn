@@ -1,7 +1,7 @@
 package nio;
 
+import java.nio.Buffer;
 import java.nio.ByteBuffer;
-import java.nio.IntBuffer;
 
 /**
  * @Author zihailei
@@ -11,38 +11,22 @@ import java.nio.IntBuffer;
 public class TestBuffer {
 
     public static void main(String[] args) {
-        //testIntBuffer();
         ByteBuffer allocate = ByteBuffer.allocate(1024);
-        allocate.put(Byte.valueOf("k"));
-        System.out.println(allocate.capacity());
-        System.out.println(allocate.position());
-        System.out.println(allocate.limit());
+        allocate.put("ileir".getBytes());
+        print(allocate);
     }
 
-    private static void testIntBuffer() {
-        IntBuffer intBuffer = IntBuffer.allocate(2);
-        System.out.println(intBuffer.capacity());
-        System.out.println(intBuffer.position());
-        System.out.println(intBuffer.limit());
-        System.out.println("---------");
-        intBuffer.put(2);
-        intBuffer.put(22);
-        System.out.println(intBuffer.capacity());
-        System.out.println(intBuffer.position());
-        System.out.println(intBuffer.limit());
-        System.out.println("---------");
-        intBuffer.flip();
-        System.out.println("flip---------");
-        System.out.println(intBuffer.capacity());
-        System.out.println(intBuffer.position());
-        System.out.println(intBuffer.limit());
-        System.out.println("red before---------");
-        System.out.println(intBuffer.get());
-        System.out.println(intBuffer.get());
-        System.out.println("red after---------");
-        System.out.println(intBuffer.capacity());
-        System.out.println(intBuffer.position());
-        System.out.println(intBuffer.limit());
-        System.out.println("---------");
+    private static void print(Buffer... buffers) {
+        for (Buffer buffer : buffers) {
+            System.out.println("capacity=" + buffer.capacity()
+                    + ",limit=" + buffer.limit()
+                    + ",position=" + buffer.position()
+                    + ",hasRemaining:" + buffer.hasRemaining()
+                    + ",remaining=" + buffer.remaining()
+                    + ",hasArray=" + buffer.hasArray()
+                    + ",isReadOnly=" + buffer.isReadOnly()
+                    + ",arrayOffset=" + buffer.arrayOffset());
+        }
     }
+
 }

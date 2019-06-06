@@ -12,7 +12,6 @@ public class TestCountDownLatch {
 
     public static void main(String[] args) {
         CountDownLatch countDownLatch = new CountDownLatch(3);
-
         Thread thread1 = new Thread(() -> {
             try {
                 Thread.sleep(1000);
